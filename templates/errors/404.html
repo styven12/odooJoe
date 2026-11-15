@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Page introuvable · Mini-Odoo{% endblock %}
+{% block content %}
+<section class="auth-wrap" style="min-height:60vh">
+  <div class="auth-card" style="text-align:center">
+    <div style="font-size:56px;font-weight:800;letter-spacing:-.05em;background:linear-gradient(110deg,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent">404</div>
+    <h1 class="page-title" style="font-size:22px;margin:6px 0 4px">Page introuvable</h1>
+    <p class="page-subtitle" style="margin:0 auto 16px;max-width:420px">
+      {% if error_message %}{{ error_message }}{% else %}Cette adresse n'existe pas (ou plus) dans l'application. Aucune donnée n'a été modifiée.{% endif %}
+    </p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <a class="button" href="/">Retour à l'accueil</a>
+      <a class="button-secondary" href="/modules/">Voir les applications</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

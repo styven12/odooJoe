@@ -1,0 +1,27 @@
+# Blueprint Render (optionnel).
+# Si vous préférez le déploiement "Blueprint" : sur Render, New + > Blueprint
+# en sélectionnant ce dépôt. Le service existant est mis à jour s'il porte le
+# même nom (sinon ajustez "name" ci-dessous).
+#
+# Remarque : la configuration de production (base PostgreSQL Render, hôtes
+# autorisés, sécurité) est déjà intégrée dans config/settings.py ; aucune
+# variable d'environnement n'est obligatoire.
+
+services:
+  - type: web
+    name: odoojoe
+    runtime: python
+    plan: free
+    buildCommand: bash build.sh
+    startCommand: gunicorn config.wsgi:application
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+      # Optionnel : remplacer la base préconfigurée dans settings.py
+      # - key: DATABASE_URL
+      #   value: "postgresql://mini_odoo_user:...@dpg-.../mini_odoo"
+      # Optionnel : identifiants de l'admin de secours (base neuve uniquement)
+      # - key: ADMIN_USERNAME
+      #   value: "admin"
+      # - key: ADMIN_PASSWORD
+      #   sync: false

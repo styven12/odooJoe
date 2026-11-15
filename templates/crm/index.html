@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load ui_i18n %}
+{% block title %}CRM · Mini-Odoo{% endblock %}
+{% block content %}
+<section class="page-heading"><div><p class="eyebrow">Espace commercial · 01</p><h1 class="page-title">{{ "Centre de pilotage"|ui }}</h1><p class="page-subtitle">{{ "Votre activité commerciale, en temps réel."|ui }}</p></div><a class="button" href="{% url 'crm:pipeline' %}"><span aria-hidden="true">＋</span> {{ "Ouvrir le pipeline"|ui }}</a></section>
+<section class="metric-grid" aria-label="Indicateurs CRM">
+  <article class="metric-card" style="--metric-glow:#5ce1e626"><p class="metric-label">Contacts</p><p class="metric-value">{{ indicators.contacts|default:0 }}</p><p class="metric-foot">{{ "dans votre espace"|ui }}</p></article>
+  <article class="metric-card" style="--metric-glow:#7d8dff2b"><p class="metric-label">{{ "Prospects"|ui }}</p><p class="metric-value">{{ indicators.prospects|default:0 }}</p><p class="metric-foot">{{ "à qualifier"|ui }}</p></article>
+  <article class="metric-card" style="--metric-glow:#bb8cff2b"><p class="metric-label">{{ "Opportunités"|ui }}</p><p class="metric-value">{{ indicators.opportunites|default:0 }}</p><p class="metric-foot">{{ "dans le pipeline"|ui }}</p></article>
+  <article class="metric-card" style="--metric-glow:#52ddb22b"><p class="metric-label">{{ "Activités"|ui }}</p><p class="metric-value">{{ indicators.activites|default:0 }}</p><p class="metric-foot">{{ "à suivre"|ui }}</p></article>
+</section>
+<section class="panel" style="margin-top:16px;background:radial-gradient(ellipse at 95% 0%,#5ce1e61d,transparent 42%),linear-gradient(120deg,#131c2a,#101622)"><div class="panel-header"><div><p class="eyebrow">{{ "Prévision"|ui }}</p><h2 class="section-title">{{ "Chiffre d’affaires prévisionnel pondéré"|ui }}</h2></div><span class="badge"><span class="badge-dot"></span> {{ "Données CRM"|ui }}</span></div><div class="metric-value accent-value">{{ indicators.chiffre_affaires_previsionnel|floatformat:0 }} <span style="font-size:14px;letter-spacing:0;color:var(--muted)">FCFA</span></div><a class="text-link" style="display:inline-block;margin-top:12px" href="{% url 'crm:pipeline' %}">{{ "Explorer les opportunités"|ui }} <span aria-hidden="true">↗</span></a></section>
+<section class="split-grid" style="margin-top:16px">
+  <article class="panel"><div class="panel-header"><div><h2 class="section-title">{{ "Opportunités par étape"|ui }}</h2><p class="section-kicker">{{ "Répartition du pipeline commercial"|ui }}</p></div><a class="text-link" href="{% url 'crm:pipeline' %}">{{ "Pipeline"|ui }} ↗</a></div>
+    {% for item in opportunities_by_stage %}<div class="row-item"><div class="row-main"><p class="row-title">{{ item.label|ui }}</p><div class="progress-track" style="margin-top:7px"><div class="progress-bar" style="width:{% widthratio item.total indicators.opportunites 100 %}%"></div></div></div><span class="badge">{{ item.total }}</span></div>{% empty %}<div class="empty-state">{{ "Aucune opportunité"|ui }} enregistrée.</div>{% endfor %}
+  </article>
+  <article class="panel"><div class="panel-header"><div><h2 class="section-title">{{ "Activités récentes"|ui }}</h2><p class="section-kicker">{{ "Les prochaines actions commerciales"|ui }}</p></div><span class="badge">{{ recent_activities|length }} {{ "récentes"|ui }}</span></div>
+    {% for activity in recent_activities %}<div class="row-item"><div class="row-main"><p class="row-title">{{ activity.title }}</p><p class="row-detail">{{ activity.get_activity_type_display|ui }}{% if activity.assigned_to %} · {{ activity.assigned_to }}{% endif %} · {{ activity.due_at|date:"d/m/Y H:i" }}</p></div><span class="badge {% if activity.status == 'DONE' %}success{% elif activity.status == 'CANCELLED' %}danger{% else %}warning{% endif %}">{{ activity.get_status_display|ui }}</span></div>{% empty %}<div class="empty-state">{{ "Aucune activité commerciale enregistrée."|ui }}</div>{% endfor %}
+  </article>
+</section>
+{% endblock %}

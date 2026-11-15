@@ -1,0 +1,26 @@
+<span class="app-icon module-icon" aria-hidden="true" style="--module-accent:{% if module.slug == 'crm' %}#5ce1e6{% elif module.slug == 'sales' or module.slug == 'pos' or module.slug == 'ecommerce' %}#8fa2ff{% elif module.slug == 'inventory' or module.slug == 'purchasing' or module.slug == 'shipping' %}#ffc778{% elif module.slug == 'manufacturing' or module.slug == 'maintenance' or module.slug == 'assets' %}#ff9b91{% elif module.slug == 'invoicing' or module.slug == 'accounting' or module.slug == 'treasury' or module.slug == 'expenses' %}#c398ff{% elif module.slug == 'employees' or module.slug == 'leaves' or module.slug == 'attendance' or module.slug == 'payroll' %}#6fe0ae{% else %}#7fc8ff{% endif %}">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    {% if module.slug == 'crm' %}<circle cx="9" cy="8" r="3"/><path d="M3.5 20v-1.2A5.5 5.5 0 0 1 9 13.3a5.5 5.5 0 0 1 5.5 5.5V20M16 5.4a3 3 0 0 1 0 5.8M17 14a4.7 4.7 0 0 1 3.5 4.5V20"/>
+    {% elif module.slug == 'sales' %}<path d="M4 18 10 12l3.5 3.5L20 8"/><path d="M14.5 8H20v5.5M4 21h16"/>
+    {% elif module.slug == 'pos' %}<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h2m4 0h2m-8 4h2m4 0h2m-8 4h2m4 0h2"/>
+    {% elif module.slug == 'ecommerce' %}<path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 9V6a3 3 0 0 1 6 0v3M9 13h.01M15 13h.01"/>
+    {% elif module.slug == 'inventory' %}<path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4.5 7.8 7.5 4.3 7.5-4.3M12 12v9M8 5.2l8 4.5"/>
+    {% elif module.slug == 'purchasing' %}<path d="M3 4h2l2.2 11.5a2 2 0 0 0 2 1.6h8.3a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M12 7h5m-2.5-2.5v5"/>
+    {% elif module.slug == 'manufacturing' %}<path d="m10.2 3.5.5-1.2h2.6l.5 1.2 1.7.7 1.2-.5 1.8 1.8-.5 1.2.7 1.7 1.2.5v2.6l-1.2.5-.7 1.7.5 1.2-1.8 1.8-1.2-.5-1.7.7-.5 1.2h-2.6l-.5-1.2-1.7-.7-1.2.5-1.8-1.8.5-1.2-.7-1.7-1.2-.5V8.9l1.2-.5.7-1.7-.5-1.2 1.8-1.8 1.2.5 1.7-.7Z"/><circle cx="12" cy="10.2" r="3"/>
+    {% elif module.slug == 'shipping' %}<path d="M3 6h11v11H3zM14 10h4l3 3v4h-7z"/><circle cx="7.5" cy="18.5" r="1.5"/><circle cx="18" cy="18.5" r="1.5"/><path d="M16 10v3h5"/>
+    {% elif module.slug == 'maintenance' %}<path d="M14.5 6.5a5 5 0 0 0-6.8 6.8L3 18l3 3 4.7-4.7a5 5 0 0 0 6.8-6.8l-3 3-3-3 3-3Z"/>
+    {% elif module.slug == 'invoicing' %}<path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3Z"/><path d="M9 8h6m-6 4h6m-6 4h3"/>
+    {% elif module.slug == 'accounting' %}<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h2m4 0h2m-8 4h2m4 0h2m-8 4h2m4 0h2"/>
+    {% elif module.slug == 'treasury' %}<rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18M7 6V4h10v2"/><path d="M15 15h3"/>
+    {% elif module.slug == 'expenses' %}<path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3Z"/><path d="M9 8h6m-6 4h3m0 4 3-3m0 0h-3m3 0v3"/>
+    {% elif module.slug == 'employees' %}<circle cx="12" cy="8" r="3.5"/><path d="M4 21v-1.5a8 8 0 0 1 16 0V21M18 5a3.2 3.2 0 0 1 0 6"/>
+    {% elif module.slug == 'leaves' %}<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 10h18m-13 5 2 2 4-4"/>
+    {% elif module.slug == 'attendance' or module.slug == 'timesheets' %}<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/>
+    {% elif module.slug == 'payroll' %}<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18m-13 5h4m4 0h1"/>
+    {% elif module.slug == 'projects' %}<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16m6-16v16M5.5 8h1m5 0h1m5 0h1M5.5 12h1m5 0h1m5 0h1"/>
+    {% elif module.slug == 'helpdesk' %}<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3.3"/><path d="m5.6 5.6 4 4m4.8 4.8 4 4m0-12.8-4 4m-4.8 4.8-4 4"/>
+    {% elif module.slug == 'assets' %}<path d="m4 14 1.5-5h13L20 14v5h-2v-2H6v2H4v-5Z"/><path d="M6 14h12M8 9l1-3h6l1 3"/><circle cx="7.5" cy="14.5" r=".8"/><circle cx="16.5" cy="14.5" r=".8"/>
+    {% elif module.slug == 'documents' %}<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v5h5M9 12h6m-6 4h6"/><path d="M4 6v15"/>
+    {% else %}<rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8m-8 3h8m-8 3h5"/>{% endif %}
+  </svg>
+</span>

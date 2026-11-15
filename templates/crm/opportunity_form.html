@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% load ui_i18n %}
+{% block title %}{{ "Nouvelle opportunité"|ui }} · CRM{% endblock %}
+{% block content %}
+<section class="page-heading"><div><p class="eyebrow">CRM · {{ request.company.name }}</p><h1 class="page-title">{{ "Créer une opportunité"|ui }}</h1><p class="page-subtitle">{{ "Rattachez l’opportunité à un contact de la société active."|ui }}</p></div></section>
+<section class="panel" style="max-width:860px"><form method="post" class="form-stack">{% csrf_token %}{% if form.non_field_errors %}<div class="notice">{{ form.non_field_errors }}</div>{% endif %}<div class="split-grid">{% for field in form %}<div><label class="field-label" for="{{ field.id_for_label }}">{{ field.label|ui }}</label>{{ field }}{% if field.help_text %}<p class="row-detail">{{ field.help_text }}</p>{% endif %}{% for error in field.errors %}<p class="notice" style="margin-top:6px">{{ error }}</p>{% endfor %}</div>{% endfor %}</div><div class="toolbar"><button class="button" type="submit">{{ "Enregistrer l’opportunité"|ui }}</button><a class="button-secondary" href="{% url 'crm:pipeline' %}">{{ "Annuler"|ui }}</a></div></form></section>
+{% endblock %}

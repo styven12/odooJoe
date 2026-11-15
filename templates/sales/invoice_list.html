@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% load ui_i18n %}
+{% block title %}{{ "Factures"|ui }} · Mini-Odoo{% endblock %}
+{% block content %}
+<section class="page-heading"><div><p class="eyebrow">{{ "Comptabilité"|ui }} · {{ request.company.name|default:"" }}</p><h1 class="page-title">{{ "Factures clients"|ui }}</h1><p class="page-subtitle">{{ "Les commandes confirmées créent une facture à suivre ici."|ui }}</p></div><a class="button-secondary" href="{% url 'sales:orders' %}">{{ "Voir les commandes"|ui }} ↗</a></section>
+<section class="panel"><div class="table-wrap"><table class="data-table"><thead><tr><th>{{ "Référence"|ui }}</th><th>{{ "Client"|ui }}</th><th>{{ "Commande"|ui }}</th><th>{{ "Émise le"|ui }}</th><th>{{ "Montant"|ui }}</th><th>{{ "État"|ui }}</th><th>{{ "Action"|ui }}</th></tr></thead><tbody>{% for invoice in invoices %}<tr><td>{{ invoice.number }}</td><td>{{ invoice.customer.name }}</td><td>{{ invoice.sales_order.number }}</td><td>{{ invoice.issued_at|date:"d/m/Y" }}</td><td>{{ invoice.amount|floatformat:0 }} {{ invoice.currency }}</td><td>{{ invoice.get_status_display|ui }}</td><td>{% if invoice.status == "OPEN" %}<form method="post" action="{% url 'sales:pay_invoice' invoice.pk %}">{% csrf_token %}<button class="button" type="submit">{{ "Marquer payée"|ui }}</button></form>{% else %}—{% endif %}</td></tr>{% empty %}<tr><td colspan="7" class="empty-state">{{ "Aucune facture pour cette société."|ui }}</td></tr>{% endfor %}</tbody></table></div></section>
+{% endblock %}
